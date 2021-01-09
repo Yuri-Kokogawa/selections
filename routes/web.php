@@ -10,7 +10,18 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');
+
 
 Route::get('/', function () {
     return view('welcome');
 });
+
+Route::group(['prefix' =>'contributor','middleware' => 'auth'], function(){
+    Route::get('create','Contributor\ContributorsController@add');
+    
+});
+
+
